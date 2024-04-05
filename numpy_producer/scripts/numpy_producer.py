@@ -8,10 +8,10 @@ import numpy
 def talker():
     pub = rospy.Publisher('floats', numpy_msg(Floats),queue_size=10)
     rospy.init_node('talker', anonymous=True)
-    r = rospy.Rate(2) # 10hz
+    r = rospy.Rate(512) # 10hz
     while not rospy.is_shutdown():
         
-        a=numpy.array(numpy.random.rand(1,8,3,32), dtype=numpy.float32)
+        a=numpy.array(numpy.ones((64,1)), dtype=numpy.float32)
         a=a.flatten()
         pub.publish(a)
         r.sleep()

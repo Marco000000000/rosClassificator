@@ -11,7 +11,7 @@ def talker():
     r = rospy.Rate(512) # 10hz
     while not rospy.is_shutdown():
         
-        a=numpy.array(numpy.ones((64,1)), dtype=numpy.float32)
+        a=numpy.array(numpy.ones((64,1536)), dtype=numpy.float32)
         a=a.flatten()
         pub.publish(a)
         r.sleep()

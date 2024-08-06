@@ -1,0 +1,3 @@
+right:	accuracy:0.9667	precision:1.0	recall:0.9	specificity:1.0
+left:	accuracy:0.9667	precision:0.9091	recall:1.0	specificity:0.95
+steady:	accuracy:1.0	precision:1.0	recall:1.0	specificity:1.0

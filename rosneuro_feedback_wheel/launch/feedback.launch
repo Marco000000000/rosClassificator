@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<launch>
+
+	<!-- Feedback arguments -->
+		<arg name="modality" 	 default='calibration'/>
+		<arg name="thresholds"   default='[0.9, 0.9]'/>
+		<arg name="classes"      default='[771, 773]'/>
+		<arg name="trials"       default='[10, 10]'/>
+		<arg name="show_on_rest" default='True'/>
+			
+
+
+	<!-- recorder -->
+		<arg name="autostart" default='true'/>
+		<arg name="filepath"  default='/home/marco/Data' />
+			
+	<!-- protocol arguments -->
+		<arg name="subject"   default="xx"/>
+		<arg name="task"      default="mi_bhbf"/>
+		<arg name="extra"     default=""/>
+
+
+	<!-- Protocol parameters -->
+		<rosparam param="/protocol/subject"	 subst_value="True">$(arg subject)</rosparam>
+		<rosparam param="/protocol/modality" subst_value="True">$(arg modality)</rosparam>
+		<rosparam param="/protocol/task"	 subst_value="True">$(arg task)</rosparam>
+		<rosparam param="/protocol/extra"	 subst_value="True">$(arg extra)</rosparam>
+	
+
+	<!-- recorder node -->
+	<node name="recorder" pkg="rosneuro_recorder" type="recorder" >
+		<param name="~autostart" value="$(arg autostart)"/>
+		<param name="~filepath" value="$(arg filepath)"/>
+	</node>
+
+  	<!-- neurowheel node -->
+	<node name="trainingwheel" pkg="rosneuro_feedback_wheel" type="trainingwheel"  output="screen">
+		<rosparam param="modality" subst_value="True">$(arg modality)</rosparam>
+		<rosparam param="thresholds" subst_value="True">$(arg thresholds)</rosparam>
+		<rosparam param="classes" subst_value="True">$(arg classes)</rosparam>
+		<rosparam param="trials" subst_value="True">$(arg trials)</rosparam>
+		<rosparam param="show_on_rest" subst_value="True">$(arg show_on_rest)</rosparam>
+
+	</node>
+
+</launch>
